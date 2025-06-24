@@ -8,7 +8,7 @@ const Sidebar = ({ selectedUser, setSelectedUser }) => {
   const navigate = useNavigate();
 
   return (
-    <div className={`bg-[#0D0B21] h-full p-5 overflow-y-scroll ${selectedUser ? 'max-md:hidden' : ''}`}>
+<div className={`bg-white/0.2 backdrop-blur-xl border-r border-white/10 h-full p-5 overflow-y-scroll ${selectedUser ? 'max-md:hidden' : ''}`}>
       <div className="pb-5">
         <div className="flex justify-between items-center">
           <img src={assets.logo} alt="logo" className="max-w-40" />
@@ -40,7 +40,8 @@ const Sidebar = ({ selectedUser, setSelectedUser }) => {
           >
             <img src={user.profilePic || assets.avatar_icon} alt="" className="w-[35px] aspect-[1/1] rounded-full" />
             <div className="flex flex-col leading-5">
-              <p>{user.fullName}</p>
+              <p className="text-sm font-medium text-white">{user.fullName}</p>
+
               <span className={`text-xs ${index < 3 ? 'text-green-400' : 'text-neutral-400'}`}>
                 {index < 3 ? 'Online' : 'Offline'}
               </span>

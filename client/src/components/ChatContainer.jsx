@@ -13,7 +13,8 @@ const ChatContainer = ({ selectedUser, setSelectedUser }) => {
     }
   },[])
   return selectedUser ? (
-    <div className='h-full overflow-scroll relative backdrop-blur-lg'>
+    <div className='h-full overflow-hidden relative bg-white/5 backdrop-blur-[4px] rounded-lg border border-white/10 shadow-inner'>
+
       {/* -------- header -------- */}
       <div className='flex items-center gap-3 py-3 mx-4 border-b border-stone-500'>
         <img src={assets.profile_martin} alt="" className="w-8 rounded-full" />
@@ -49,9 +50,11 @@ const ChatContainer = ({ selectedUser, setSelectedUser }) => {
               />
             ) : (
               <p
-                className={`p-2 max-w-[200px] md:text-sm font-light rounded-lg mb-8 break-all bg-violet-500/30 text-white ${
-                  msg.senderId === '680f50e4f10f3cd28382ecf9' ? 'rounded-br-none' : 'rounded-bl-none'
-                }`}
+                className={`p-3 max-w-[240px] md:text-sm font-light rounded-xl mb-6 break-words
+  ${msg.senderId === '680f50e4f10f3cd28382ecf9' ? 'rounded-br-none bg-purple-600/30' : 'rounded-bl-none bg-white/10'}
+  text-white border border-white/20 backdrop-blur-sm shadow-sm
+`}
+
               >
                 {msg.text}
               </p>
@@ -106,10 +109,18 @@ const ChatContainer = ({ selectedUser, setSelectedUser }) => {
  
     </div>
   ) : (
-    <div className='flex flex-col items-center justify-center gap-2 text-gray-500 bg-white/10 max-md:hidden'>
-      <img src={assets.logo_icon} className='max-w-16' alt="" />
-      <p className='text-lg font-medium text-white'>Chat anytime, anywhere</p>
-    </div>
+<div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-lg border border-white/10 shadow-inner">
+  <img
+    src={assets.bgImage}
+    alt="Background"
+    className="absolute inset-0 w-full h-full object-cover opacity-20 blur-md scale-125"
+  />
+  <div className="z-10 flex flex-col items-center gap-2 text-gray-200">
+    <img src={assets.logo_icon} className="w-14" alt="Logo" />
+    <p className="text-lg font-semibold">Chat anytime, anywhere</p>
+  </div>
+</div>
+
   );
 };
 

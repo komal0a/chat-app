@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 
 import assets , {imagesDummyData }from '../assets/assets'
 
-const RightSidebar = ({ selectedUser }) => {
+const RightSidebar = ({ selectedUser, setSelectedUser }) => {
+
   return selectedUser && (
     <div className={`bg-[#8185B2]/10 text-white w-full relative overflow-y-scroll ${
       selectedUser ? "max-md:hidden" : ""
@@ -39,9 +40,17 @@ const RightSidebar = ({ selectedUser }) => {
     ))}
   </div>
 </div>
-        <button className='absolute bottom-5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-400 to-violet-600 text-white border-none text-sm font-light py-2 px-20 rounded-full cursor-pointer'>
+    <div className='flex justify-center px-5 py-6'>
+
+      <button
+          onClick={() => setSelectedUser(null)}
+          className="w-full bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white font-semibold py-2 rounded-full transition-all hover:opacity-90"
+          >
           Logout
         </button>
+
+          </div>
+
     </div>
   )
 }
@@ -50,4 +59,5 @@ const RightSidebar = ({ selectedUser }) => {
 export default RightSidebar
 RightSidebar.propTypes = {
   selectedUser: PropTypes.object,
+  setSelectedUser: PropTypes.func, // add this
 };
