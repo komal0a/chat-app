@@ -1,20 +1,31 @@
-import React from 'react';
-import ChatContainer from '../components/ChatContainer'; // or wherever the file is located
-
+import { useState } from 'react';
+import ChatContainer from '../components/ChatContainer';
+import RightSidebar from '../components/RightSidebar';
 import Sidebar from '../components/Sidebar';
 
 const HomePage = () => {
+  const [selectedUser, setSelectedUser] = useState(null);
 
-  const[selectedUser,setSelectedUser]=useState(false)
   return (
-    <div className='border w-full h-screen sm:px-[15%] sm:py-[5%]'>
-    <div className={`backdrop-blur-xl border-2 border-gray-600 rounded-2xl overflow-hidden h-[100%] grid-cols-1 relative ${selectedUser ? 'md:grid-cols-[1fr_11.5fr_1fr] xl-grid-cols-[1fr_2fr_1fr]' : 'md:grid-cols-2'}`}>
-      <Sidebar />
-      <ChatContainer />
-        <RightSidebar />  
-       </div>
+    <div className='w-full h-screen overflow-hidden bg-gradient-to-br from-[#0D0C1D] to-[#1C1B2D]'>
+      <div className='flex w-full h-full text-white'>
+        {/* Sidebar */}
+        <div className='w-full md:w-1/4 h-full'>
+          <Sidebar selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
+        </div>
+
+        {/* ChatContainer */}
+        <div className='w-full md:w-2/4 h-full border-x border-[#ffffff25]'>
+          <ChatContainer selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
+        </div>
+
+        {/* RightSidebar */}
+        <div className='hidden md:block w-1/4 h-full'>
+          <RightSidebar selectedUser={selectedUser} />
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default HomePage;
